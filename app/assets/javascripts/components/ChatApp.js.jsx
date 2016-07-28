@@ -1,4 +1,12 @@
 var ChatApp = React.createClass({
+  getInitialState: function() {
+    return(
+      { chats: [ ],
+        inProgress: false
+      }
+    );
+  },
+
   addChat: function(e) {
     e.preventDefault();
     var newChats = this.state.chats;
@@ -28,14 +36,6 @@ var ChatApp = React.createClass({
       inProgress: this.setProgress(event.target),
       selectedInputId: selectedInputId 
     });
-  },
-
-  getInitialState: function() {
-    return(
-      { chats: [ ],
-        inProgress: false
-      }
-    );
   },
 
   render: function(){
