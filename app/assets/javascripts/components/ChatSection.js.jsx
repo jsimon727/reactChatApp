@@ -8,8 +8,8 @@ var ChatSection = React.createClass({
   render: function(){
     return(
       <div>
-        <ChatsList messageSent={this.props.messageSent} selectedInputId={ this.props.selectedInputId } chatSectionId={ this.props.chatSectionId } chats={ this.props.chats } inProgress={ this.props.inProgress } />
-        <Form clearInput={this.props.clearInput} inputId={ this.props.chatSectionId } addChat={ this.props.addChat } handleTextInput={ this.props.handleTextInput }/>
+        <ChatsList messageSent={this.props.messageSent} inputText={ this.props.inputText } selectedInputId={ this.props.selectedInputId } chatSectionId={ this.props.chatSectionId } chats={ this.props.chats } inProgress={ this.props.inProgress } />
+        <Form inputId={ this.props.chatSectionId } addChat={ this.props.addChat } handleTextInput={ this.props.handleTextInput }/>
       </div>
     );
   }

@@ -1,0 +1,42 @@
+var ChatsList = React.createClass({
+  getInitialState: function() {
+    return(
+      { showTypingIndicator: false }
+    );
+  },
+
+  render: function(){
+    var handleStatus = this.props.handleStatus;
+    var chatSectionId = this.props.chatSectionId;
+    var selectedInputId = this.props.selectedInputId;
+    var inProgress;
+
+    var imageStyle = {
+      width: '70px',
+      height: '40px'
+    }
+
+    if (this.props.inProgress) {
+      if (selectedInputId === chatSectionId){
+        inProgress = <div></div>;
+      }
+      else {
+        inProgress = <img style={ imageStyle }src={"<%= asset_url('progress_indicator.png', ) %>"} />
+      }
+    } else {
+      inProgress = <div></div>;
+    };
+
+    var numberOfChats = this.props.chats.length;
+    var messageSent = this.props.messageSent;
+    var chats = this.props.chats.map(function(chat, index) {
+      var participantId = chat.participantId;
+        return (
+        <ChatText selectedInputId={ selectedInputId } chatSectionId={chatSectionId} participantId={ participantId } messageSent={ messageSent } text={chat.text} handleStatus={handleStatus} key={ index } />
+        );
+    });
+
+    return(<div><ul> {chats} </ul><div>{inProgress}</div></div>);
+  }
+});
+

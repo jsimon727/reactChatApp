@@ -1,13 +1,15 @@
 var ChatApp = React.createClass({
-  addChat: function() {
-    var newChats = this.state.chats
-    newChats.push({ text: this.state.inputText})
+  addChat: function(e) {
+    e.preventDefault();
+    var newChats = this.state.chats;
+    var participantId = this.state.selectedInputId;
+    newChats.push({ text: this.state.inputText, participantId: participantId})
 
     this.setState({ 
       chats: newChats,
       messageSent: true,
       selectedInputId: this.state.selectedInputId,
-      clearInput: true
+      inputText: ""
     });
   },
 
@@ -30,18 +32,33 @@ var ChatApp = React.createClass({
 
   getInitialState: function() {
     return(
-      { chats: [ { text: "Type a question or comment in the text field below. Your chat will show up here" } ],
+      { chats: [ ],
         inProgress: false
       }
     );
   },
 
   render: function(){
+    var Grid = ReactBootstrap.Grid;
+    var Row = ReactBootstrap.Row;
+    var Col = ReactBootstrap.Col;
+    var style = {
+      height: "600px",
+      position: 'relative',
+      border: '#e7e9e8 solid .8px'
+    }
+
     return(
-      <div>
-        <ChatSection clearInput={this.state.clearInput} messageSent={this.state.messageSent} selectedInputId={ this.state.selectedInputId} chatSectionId={ "1" } addChat= { this.addChat } inProgress={ this.state.inProgress } handleTextInput= { this.handleTextInput } chats={ this.state.chats }/>
-        <ChatSection clearInput={this.state.clearInput} messageSent={this.state.messageSent} selectedInputId={ this.state.selectedInputId} chatSectionId={ "2" } addChat= { this.addChat } inProgress={ this.state.inProgress } handleTextInput= { this.handleTextInput } chats={ this.state.chats }/>
-      </div>
+      <Grid>
+        <Row>
+          <Col style={ style } xs={6} md={6} >
+            <ChatSection style={ style } messageSent={this.state.messageSent} selectedInputId={ this.state.selectedInputId} chatSectionId={ "1" } addChat= { this.addChat } inputText={ this.state.inputText } inProgress={ this.state.inProgress } handleTextInput= { this.handleTextInput } chats={ this.state.chats }/>
+          </Col>
+          <Col style={ style } xs={6} md={6} >
+            <ChatSection style={ style } messageSent={this.state.messageSent} selectedInputId={ this.state.selectedInputId} chatSectionId={ "2" } addChat= { this.addChat } inputText={ this.state.inputText } inProgress={ this.state.inProgress } handleTextInput= { this.handleTextInput } chats={ this.state.chats }/>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 });

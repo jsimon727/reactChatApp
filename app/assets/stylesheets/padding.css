@@ -1,0 +1,18 @@
+.padding--large--vertical {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.padding--small--vertical {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.padding--x-small--vertical {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.padding--x-small--left {
+  padding-left: 10px;
+}

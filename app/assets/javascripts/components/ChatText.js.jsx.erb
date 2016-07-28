@@ -1,0 +1,58 @@
+var ChatText = React.createClass({
+    setMessageStatus: function() {
+      var chatSectionId = this.props.chatSectionId;
+      var participantId = this.props.participantId;
+
+      if(this.props.messageSent) {
+        if (participantId === chatSectionId){
+          return "Sent"
+        }
+        else {
+          return "Received"
+        }
+      }
+    },
+
+    setAvatarImageUrl: function() {
+      var participantId = this.props.participantId;
+
+      if(parseInt(participantId) === 1) {
+        return "<%= asset_url('participant_1') %>"
+      }
+      else{
+        return "<%= asset_url('participant_2') %>"
+      }
+    },
+
+    render: function(){
+      var Media = ReactBootstrap.Media;
+      var Image = ReactBootstrap.Image;
+      var Label = ReactBootstrap.Label;
+      var selectedInputId = this.props.selectedInputId;
+      var avatarImageUrl = this.setAvatarImageUrl();
+      var messageStatus = this.setMessageStatus();
+
+      var imageStyle = {
+        float: 'left',
+        width: '40px'
+      }
+
+      var messageStatusStyle = {
+        marginBottom: '3px'
+      }
+
+      return(
+        <li className={"list-unstyled"}>
+        <Media className={"padding--small--vertical"}>
+            <Media.Left align={ "bottom" }>
+            <Image style={ imageStyle } src={ avatarImageUrl } circle />
+            </Media.Left>
+            <Media.Body className={ "padding--x-small--left" }>
+              <p style={ messageStatusStyle } >{ this.props.text }</p>
+              <Label>{ messageStatus }</Label>
+            </Media.Body>
+          </Media>
+        </li>
+      );
+    }
+});
