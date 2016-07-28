@@ -19,7 +19,8 @@ var ChatApp = React.createClass({
         chats: newChats,
         messageSent: true,
         selectedInputId: this.state.selectedInputId,
-        inputText: ""
+        inputText: "",
+        inProgress: false
       });
     }
   },

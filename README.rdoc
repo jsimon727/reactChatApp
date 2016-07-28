@@ -5,6 +5,6 @@ Rails Version '4.2.6'
 
 Uses: 
 * gem 'react-rails'
-* gem "twitter-bootstrap-rails"
+* gem 'twitter-bootstrap-rails'
 * gem 'react-bootstrap-rails'
 
