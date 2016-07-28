@@ -11,14 +11,17 @@ var ChatApp = React.createClass({
     e.preventDefault();
     var newChats = this.state.chats;
     var participantId = this.state.selectedInputId;
-    newChats.push({ text: this.state.inputText, participantId: participantId})
 
-    this.setState({ 
-      chats: newChats,
-      messageSent: true,
-      selectedInputId: this.state.selectedInputId,
-      inputText: ""
-    });
+    if(this.state.inputText) {
+      newChats.push({ text: this.state.inputText, participantId: participantId})
+
+      this.setState({ 
+        chats: newChats,
+        messageSent: true,
+        selectedInputId: this.state.selectedInputId,
+        inputText: ""
+      });
+    }
   },
 
   setProgress: function(target){
@@ -43,7 +46,7 @@ var ChatApp = React.createClass({
     var Row = ReactBootstrap.Row;
     var Col = ReactBootstrap.Col;
     var style = {
-      height: "600px",
+      minHeight: "600px",
       position: 'relative',
       border: '#e7e9e8 solid .8px'
     }
