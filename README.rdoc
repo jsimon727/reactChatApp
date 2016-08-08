@@ -20,10 +20,14 @@ Endpoints:
 
 GET "/messages"
 
-{ message:
-  { participant_ids: [ 1, 2 ] },
-  page: 3,
-  per_page: 2
+
+
+{
+  { message:
+    { participant_ids: [ 1, 2 ] },
+    page: 3,
+    per_page: 2
+  }
 }
 
 NOTES:
@@ -31,12 +35,14 @@ NOTES:
  
 POST "/images"
 
-{ message:
- { sender_id: 1,
-   recipient_id: 2,
-   link: "https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg",
-   height: 123,
-   width: 123,
+{
+  { message:
+    { sender_id: 1,
+      recipient_id: 2,
+      link: "https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg",
+      height: 123,
+      width: 123,
+    }
   }
 }
 
@@ -46,12 +52,14 @@ NOTES:
 
 POST "/videos"
 
-{ message:
-  { sender_id: 1,
-    recipient_id: 2,
-    link: "https://www.youtube.com/watch?v=URbCILQ95Cw"
-    length: 100000,
-    source: "Youtube"
+{
+  { message:
+    { sender_id: 1,
+      recipient_id: 2,
+      link: "https://www.youtube.com/watch?v=URbCILQ95Cw"
+      length: 100000,
+      source: "Youtube"
+    }
   }
 }
 
@@ -61,19 +69,23 @@ NOTES:
  
 POST "/messages"
 
-{ message:
- { sender_id: 1,
-   recipient_id: 2,
-   body: "heyyy, this is a great message"
+{
+  { message:
+    { sender_id: 1,
+      recipient_id: 2,
+      body: "heyyy, this is a great message"
+    }
   }
 }
 
 POST "/users"
 
-{ user:
- { username: "jsimon727",
-   password: "secretpassword"
- }
+{
+  { user:
+    { username: "jsimon727",
+      password: "secretpassword"
+    }
+  }
 }
 
 
