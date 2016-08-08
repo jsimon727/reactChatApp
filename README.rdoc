@@ -1,10 +1,82 @@
 == README
 
-This is a chat app built in React.js
+This is a chat app built in Rails and React.js
 Rails Version '4.2.6'
 
 Uses: 
 * gem 'react-rails'
 * gem 'twitter-bootstrap-rails'
 * gem 'react-bootstrap-rails'
+* gem 'will_paginate'
+* gem 'bcrypt'
+
+
+Example request using cURL: 
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X GET -d '{"message":{"participant_ids": [1,2]}, "page": 3, "per_page":2 }'  http://localhost:3000/messages
+
+Endpoints:
+
+GET "/messages"
+POST "/messages"
+POST "/photos"
+POST "/videos"
+POST "/users"
+
+GET "/messages"
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X GET -d '{"message":{"participant_ids": [1,2]}, "page": 3, "per_page":2 }'  http://localhost:3000/messages
+
+{ message:
+  { participant_ids: [ 1, 2 ] },
+  page: 3,
+  per_page: 2
+ }
+
+NOTES:
+- per_page and page are optional parameters
+ 
+POST "/images"
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"sender_id": 1, "recipient_id": 2, link: "https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg", height: 23, width: 23  }}'  http://localhost:3000/images
+
+{ message:
+ { sender_id: 1,
+   recipient_id: 2,
+   link: "https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg",
+   height: 123,
+   width: 123,
+  }
+}
+
+NOTES:
+- height and width are optional parameters
+- height and width are in pixels
+
+POST "/videos"
+ { message:
+  { sender_id: 1,
+    recipient_id: 2,
+    link: "https://www.youtube.com/watch?v=URbCILQ95Cw"
+    length: 100000,
+    source: "Youtube"
+  }
+}
+
+NOTES:
+- length and source are optional parameters
+- length is in seconds, source ex. "Youtube"
+ 
+POST "/messages"
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"sender_id": 1, "recipient_id": 2, "body": "heyyy there you!"}}'  http://localhost:3000/images
+{ message:
+ { sender_id: 1,
+   recipient_id: 2,
+   body: "heyyy, this is a great message"
+  }
+}
+
+POST "/users"
+{ user:
+ { username: "jsimon727",
+   password: "secretpassword"
+  }
+}
 

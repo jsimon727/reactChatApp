@@ -1,11 +1,12 @@
 class Message < ActiveRecord::Base
+  validates :sender_id, presence: true
+  validates :recipient_id, presence: true
   belongs_to :messageable, polymorphic: true
 
   MESSAGE_TYPES = [ "image", "video", "text"]
-  #
-  # scope :between, lambda {|participant_one, participant_two|
-  # joins("INNER JOIN messages ON messgaes.sender_id = #{participant_one}
-  # AND messages.recipient_id = #{participant_two}")
-  # }
 
+  scope :between, -> (sender_id, recipient_id) do
+        where("(messages.sender_id = ? AND messages.recipient_id = ?) OR (messages.sender_id = ? AND messages.recipient_id = ?)",
+              sender_id, recipient_id, recipient_id, sender_id)
+  end
 end

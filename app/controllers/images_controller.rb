@@ -1,7 +1,12 @@
-class ImagesController < ApplicationController
+class ImagesController < ApiBaseController
   def create
-    image = Image.create(image_params)
-    message = Message.new(sender_id: params[:sender_id], recipient_id: params[:recipient_id], messageable_type: 'Image', messageable_id: image.id)
+    validate_params([:link, :sender_id, :recipient_id], image_params)
+    validate_users([image_params[:sender_id], image_params[:recipient_id]])
+
+    image = Image.create(link: image_params[:link],
+                         height: image_params[:height],
+                         width: image_params[:width])
+    message = Message.new(sender_id: image_params[:sender_id], recipient_id: image_params[:recipient_id], messageable_type: 'Image', messageable_id: image.id)
 
     if message.save
       render json: message.to_json, status: 200
