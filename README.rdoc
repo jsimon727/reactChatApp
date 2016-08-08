@@ -10,11 +10,6 @@ Uses:
 * gem 'will_paginate'
 * gem 'bcrypt'
 
-
-Example request using cURL:
-
-curl -v -H "Accept: application/json" -H "Content-type: application/json" -X GET -d '{"message":{"participant_ids": [1,2]}, "page": 3, "per_page":2 }'  http://localhost:3000/messages
-
 Endpoints:
 
 * GET "/messages"
@@ -24,8 +19,6 @@ Endpoints:
 * POST "/users"
 
 GET "/messages"
-
-curl -v -H "Accept: application/json" -H "Content-type: application/json" -X GET -d '{"message":{"participant_ids": [1,2]}, "page": 3, "per_page":2 }'  http://localhost:3000/messages
 
 { message:
   { participant_ids: [ 1, 2 ] },
@@ -37,8 +30,6 @@ NOTES:
 - per_page and page are optional parameters
  
 POST "/images"
-
-curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"sender_id": 1, "recipient_id": 2, link: "https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg", height: 23, width: 23  }}'  http://localhost:3000/images
 
 { message:
  { sender_id: 1,
@@ -70,8 +61,6 @@ NOTES:
  
 POST "/messages"
 
-curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"sender_id": 1, "recipient_id": 2, "body": "heyyy there you!"}}'  http://localhost:3000/images
-
 { message:
  { sender_id: 1,
    recipient_id: 2,
@@ -80,7 +69,6 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 }
 
 POST "/users"
-
 
 { user:
  { username: "jsimon727",
