@@ -1,4 +1,4 @@
-class Message < ApplicationRecord
+class Message < ActiveRecord::Base
   belongs_to :messageable, polymorphic: true
 
   MESSAGE_TYPES = [ "image", "video", "text"]
