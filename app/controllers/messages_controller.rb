@@ -1,7 +1,7 @@
 class MessagesController < ApiBaseController
   def index
-    validate_params([:participant_ids], message_params)
-    validate_users(message_params[:participant_ids])
+    validate_params([:participant_ids], message_params) or return
+    validate_users(message_params[:participant_ids]) or return
 
     messages = Message.between(message_params[:participant_ids].first, message_params[:participant_ids].last)
 
@@ -14,11 +14,11 @@ class MessagesController < ApiBaseController
   end
 
   def create
-    validate_params([:body, :sender_id, :recipient_id], message_params)
-    validate_users([message_params[:sender_id], message_params[:recipient_id]])
+    validate_params([:body, :sender_id, :recipient_id], message_params) or return
+    validate_users([message_params[:sender_id], message_params[:recipient_id]]) or return
 
     text = Text.create(body: message_params[:body])
-    message = Message.new(sender_id: sender.first.id, recipient_id: recipient.first.id, messageable_type: 'Text', messageable_id: text.id)
+    message = Message.new(sender_id: message_params[:sender_id], recipient_id: message_params[:recipient_id], messageable_type: 'Text', messageable_id: text.id)
 
     if message.save
       render json: message.to_json, status: 200

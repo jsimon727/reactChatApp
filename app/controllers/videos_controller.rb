@@ -1,7 +1,7 @@
 class VideosController < ApiBaseController
   def create
-    validate_params([:link, :sender_id, :recipient_id], video_params)
-    validate_users([video_params[:sender_id], video_params[:recipient_id]])
+    validate_params([:link, :sender_id, :recipient_id], video_params) or return
+    validate_users([video_params[:sender_id], video_params[:recipient_id]]) or return
 
     video = Video.create(link: video_params[:link],
                          source: video_params[:height],

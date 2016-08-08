@@ -1,7 +1,7 @@
 class ImagesController < ApiBaseController
   def create
-    validate_params([:link, :sender_id, :recipient_id], image_params)
-    validate_users([image_params[:sender_id], image_params[:recipient_id]])
+    validate_params([:link, :sender_id, :recipient_id], image_params) or return
+    validate_users([image_params[:sender_id], image_params[:recipient_id]]) or return
 
     image = Image.create(link: image_params[:link],
                          height: image_params[:height],
